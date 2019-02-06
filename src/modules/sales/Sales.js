@@ -145,7 +145,6 @@ class Sales extends Component {
                     </section>
                 </Col>        
             </Row>
-            
         )
     }
 }

@@ -51,10 +51,13 @@ class FormLocations extends Component {
     showModal(message) {
         let self = this;
         Modal.success({
-            title: 'Productos',
+            title: 'Ubicaciones',
             content: `${message}`,
             onOk() {
-                self.props.history.push("/products/locations");
+                if(!self.props.buttons)
+                    self.props.history.push("/products/locations")
+                else
+                    self.props.onClose()
             }
         });
     }
@@ -67,7 +70,7 @@ class FormLocations extends Component {
 
     render(){
         const { getFieldDecorator } = this.props.form;
-        let {title} = this.props;
+        let {title, buttons} = this.props;
         return (
             <Form>
                 <h2>{title}</h2>
@@ -79,10 +82,10 @@ class FormLocations extends Component {
                     )}
                 </Item>
                 <Item style={{textAlign: "right"}} labelCol={{span: 4}} wrapperCol={{span: 20}}>
-                    <Link to="/products/locations">
+                    {!buttons && <Link to="/products/locations">
                         <Button style={{marginRight: 10}}>Cancelar</Button>
-                    </Link>
-                    <Button onClick={this.onSave}>Guardar</Button>
+                    </Link>}
+                    <Button type="primary" onClick={this.onSave}>Guardar</Button>
                 </Item>
             </Form>
         )

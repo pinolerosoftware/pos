@@ -37,7 +37,7 @@ export default class Products extends Component {
     showModal(message) {
         let self = this;
         Modal.success({
-            title: 'Ubicaciones',
+            title: 'Productos',
             content: `${message}`,
             onOk(){
                 self.onGetData()

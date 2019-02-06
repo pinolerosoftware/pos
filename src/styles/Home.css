@@ -1,0 +1,201 @@
+* {
+    font-family: 'Raleway', sans-serif;
+}
+
+ .fixed {
+    margin-bottom: -10px;
+}
+
+.header {
+    background: #2f3640
+}
+
+.logo {
+    color: #1dd1a1;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.item-menu {
+    cursor: pointer;
+    color: #f5f6fa;
+    text-align: center;
+    font-weight: bold;
+}
+
+.item-menu:hover {
+    color: #1dd1a1;
+    transition: ease-in .3s;
+}
+
+.baner {
+    background: #2f3640;
+    padding: 130px 20px;
+}
+
+.baner-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: spaspace-evenly;
+}
+
+.baner-article {
+    width: 40%;
+    font-weight: bold;
+    margin-left: 100px;
+}
+
+.baner-article > h1 {
+    font-size: 2.5em;
+    color: #f5f6fa;
+}
+
+.baner-article > h1 > b {
+    color: #1dd1a1;
+}
+
+.baner-article > p{
+    font-size: 1em; 
+    color: #f5f6fa;
+}
+
+.baner-logo {
+    width: 40%; 
+    text-align: right;
+}
+.baner-logo {
+    width: 40%; 
+    text-align: right;
+}
+
+.icon {
+    font-size: 15em;
+    color: #f5f6fa;
+}
+
+.section-flex {
+    display: flex;
+    margin: 100px 0;
+    flex-direction: row;
+    justify-content: spaspace-evenly; 
+}
+
+.section-flex > article {
+    width: 50%;
+    margin: 0 5%;
+    text-align: justify;
+    align-self: center;
+}
+.section-flex > article > h2 {
+    text-align: center;
+    font-size: 2em;
+}
+
+.section-flex > figure {
+    width: 50%;
+    text-align: center;
+}
+
+
+/*
+* {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: 48px 70vh auto;
+    height: 100vh;
+    grid-template-areas: "header header" 
+                         "baner baner"
+                         "contend contend";
+}
+
+.item {
+    color: #2f3640;
+    background-color: #f5f6fa;
+}
+
+.header {
+    grid-area: header;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: 20% 50% repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+    height: 48px;
+    background: #2f3640;
+    color: #f5f6fa;
+}
+
+
+.item-menu:nth-of-type(1){
+    color: #1dd1a1;
+}
+
+.item-menu{
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.item-menu:hover{
+    color: #1dd1a1;
+    transition: .3s ease;
+}
+
+.baner {
+    grid-area: baner;
+    background: #2f3640;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    color: #f5f6fa;
+}
+
+.baner article {
+    display: grid;
+    grid-template-rows: 1fr 70px 20px 1fr;
+    grid-gap: 20px;
+    padding-left: 30px;
+}
+
+.baner article h2 {
+    grid-row: 2 / 3;
+}
+
+.baner article p {
+    grid-row: 3 / 4;
+}
+
+.baner img {
+    width: 290px;
+    padding: 80px 25%; 
+}
+
+.contend {
+    grid-area: contend;
+}
+
+.contend section {
+    display: grid;
+    grid-template-columns: 50px 1fr 1fr 50px;
+    grid-template-rows: 40px 200px 40px;
+    align-items: center;
+    justify-items: center;
+    grid-gap: 40px;
+}
+
+.contend section p {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    border: 1px solid aqua;
+}
+
+.contend section img {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+    border: 1px solid aqua;
+}*/

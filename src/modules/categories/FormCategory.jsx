@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 const {Item} = Form;
 const formItemLayout = {
     labelCol: {
-        span: 4 ,
+        span: 4,
     },
     wrapperCol: {
-        span: 16 ,
+        span: 18 ,
     },
 };
 
@@ -24,14 +24,16 @@ class FormCategory extends Component {
     }
 
     componentDidMount(){
-        let {match} = this.props
-        if (match.params.id) {
-            let {id} = match.params
-            fetch(`/categories/${id}`)
-            .then(res => res.json())
-            .then(data => this.setState({data: data.category}, () =>{
-                this.props.form.setFieldsValue({name: data.category.name})
-            }))
+        if(this.props.match){
+            let {match} = this.props
+            if (match.params.id) {
+                let {id} = match.params
+                fetch(`/categories/${id}`)
+                .then(res => res.json())
+                .then(data => this.setState({data: data.category}, () =>{
+                    this.props.form.setFieldsValue({name: data.category.name})
+                }))
+            }
         }
     }
 
@@ -66,10 +68,13 @@ class FormCategory extends Component {
     showModal(message) {
         let self = this;
         Modal.success({
-            title: 'Productos',
+            title: 'Categorías',
             content: `${message}`,
             onOk() {
-                self.props.history.push("/products/categories");
+                if(!self.props.buttons)
+                    self.props.history.push("/products/categories")
+                else
+                    self.props.onClose()
             }
         });
     }
@@ -82,7 +87,7 @@ class FormCategory extends Component {
     
     render(){
         const { getFieldDecorator } = this.props.form;
-        let {title} = this.props;
+        let {title, buttons} = this.props;
         return (
             <Form>
                 <h2>{title}</h2>
@@ -93,11 +98,11 @@ class FormCategory extends Component {
                         <Input onChange={e => this.onChange('name', e.target.value)}/>
                     )}
                 </Item>
-                <Item style={{textAlign: "right"}} labelCol={{span: 4}} wrapperCol={{span: 20}}>
-                    <Link to="/products/categories">
+                <Item style={{textAlign: "right"}} labelCol={{span: 2}} wrapperCol={{span: 22}}>
+                    {!buttons && <Link to="/products/categories">
                         <Button style={{marginRight: 10}}>Cancelar</Button>
-                    </Link>
-                    <Button onClick={this.onSave}>Guardar</Button>
+                    </Link>}
+                    <Button type="primary" onClick={this.onSave}>Guardar</Button>
                 </Item>
             </Form>
         )

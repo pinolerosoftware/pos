@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Avatar } from 'antd';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import PrincipalProducts from './modules/PrincipalProducts';
-import PrincipalClients from './modules/PrincipalClients';
+//import PrincipalClients from './modules/PrincipalClients';
 import Dashboard from './modules/dashboard/Dashboard';
-import Sales from './modules/sales/Sales'
+import Sales from './modules/sales/Sales';
+import CheckIn from './modules/checkIn/CheckIn';
+import Home from './modules/principal/Home';
 
 const { Header, Content, Sider } = Layout;
 const icoStyle = {
-	fontSize: "1.8em", 
 	float: "right", 
 	marginTop: "10px", 
 	marginRight: "20px",
 	borderRadius: "50%",
-	background: "#aaa",
-	color: "#efefef",
-	padding: 5,
 	cursor: "pointer"
 }
 
-const ListMenu = [{
+const ListMenu = [
+	{
 		to: "/",
 		icon: "appstore",
 		text: "Dashboard"
@@ -28,10 +27,6 @@ const ListMenu = [{
 		to: "/products",
 		icon: "appstore",
 		text: "Productos"
-	},{
-		to: "/clients",
-		icon: "appstore",
-		text: "Clientes"
 	},{
 		to: "/sales",
 		icon: "appstore",
@@ -54,7 +49,8 @@ class App extends Component {
 
 	render() {
 		return (
-			<Router>
+			<div>
+			{/* <Router>
 				<Layout style={{ minHeight: '100vh' }}>
 					<Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
 						<div className="logo" />
@@ -71,7 +67,7 @@ class App extends Component {
 					</Sider>
 					<Layout>
 						<Header style={{ background: '#fff', padding: 0 }}>
-							<Icon type="user" style={icoStyle}/>
+							<Avatar size="large" icon="user" style={icoStyle}/>
 						</Header>
 							<br />
 							<Content style={{ margin: '0 16px' }}>
@@ -79,14 +75,15 @@ class App extends Component {
 									<Switch>
 										<Route path="/" exact component={Dashboard} />
 										<Route path="/products" component={PrincipalProducts} />
-										<Route path="/clients" component={PrincipalClients} />
 										<Route path="/sales" component={Sales} />
 									</Switch>
 								</div>
 							</Content>
 					</Layout>
 				</Layout>
-			</Router>
+			</Router> */}
+			<Home />
+			</div>
 		);
 	}
 }
