@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { Layout, Row, Col, Affix, Icon } from 'antd';
 import "../../styles/Home.css"
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 class Home extends Component {
     render(){

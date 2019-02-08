@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import { Layout, Card, Input, Steps, Form, Button, Row, Col, Icon } from 'antd';
+import { Layout, Card, Input, Steps, Form, Button, Row, Col, Icon, Badge } from 'antd';
+import "../../styles/CheckIn.scss";
 
 const { Header, Content } = Layout;
 const {Item} = Form;
@@ -10,11 +11,6 @@ const logo = {
     height: "31px",
     background: "rgba(255,255,255,.2)",
     margin: "15px auto"
-}
-
-const formItemLayout = {
-    labelCol: { span: 4 },
-    wrapperCol: { span: 16 },
 }
 
 const style = {
@@ -44,20 +40,26 @@ class CheckIn extends Component {
     constructor(props){
         super(props)
         this.state={
-            current: 2
+            current: 1,
+            selectProducto: false,
+            selectServicio: false
         }
         this.next = this.next.bind(this);
         this.prev = this.prev.bind(this);
     }
 
     next() {
-        const current = this.state.current + 1;
-        this.setState({ current });
+        if(this.state.current < 2){
+            const current = this.state.current + 1;
+            this.setState({ current });
+        }
     }
     
     prev() {
-        const current = this.state.current - 1;
-        this.setState({ current });
+        if(this.state.current > 0){
+            const current = this.state.current - 1;
+            this.setState({ current });
+        }
     }
     render() {
         const { current } = this.state;
@@ -82,7 +84,7 @@ class CheckIn extends Component {
                         </Steps>
                         <div style={style.stepsContent}>
                             {
-                                (steps[current].title == 'Inicio') ?
+                                (steps[current].title === 'Inicio') ?
                                     <Form layout="horizontal" style={{display: "flex", flexDirection: "column"}}>
                                         <h2 style={{textAlign: "center"}}>Datos de la empresa</h2>
                                         <Row gutter={12}>
@@ -106,20 +108,25 @@ class CheckIn extends Component {
                                         <br />
                                     </Form>
                                 :
-                                (steps[current].title == 'Caracteristicas') ?
+                                (steps[current].title === 'Caracteristicas') ?
                                     <Form style={{display: "flex", flexDirection: "column"}}>
                                         <h2 style={{textAlign: "center"}}>¿Qué Tipo de empresa tienes?</h2>
+                                        <br />
                                         <section style={{display: "flex", justifyContent: "space-evenly"}}>
-                                            <Card hoverable style={{ height: 250, width: 300, padding: 10 }} cover={
-                                                <Icon type="shop" style={{fontSize: "7em", marginTop: 5}} />
-                                            }>
-                                                <Meta title="Empresa de producto" description="Pequeña o mediana empresa dedicada a la venta y distribucion de productos"/>
-                                            </Card>
-                                            <Card hoverable style={{ height: 250, width: 300, padding: 10 }} cover={
-                                                <Icon type="team" style={{fontSize: "7em", marginTop: 5}}/>
-                                            }>
-                                                <Meta title="Empresa de servicio" description="Empresa orientada a servicios diversos"/>
-                                            </Card>
+                                            <Badge dot={this.state.selectProducto} style={{height: 12, width: 12, background: "#52c41a"}}>
+                                                <Card hoverable style={{ height: 250, width: 300, padding: 10 }} cover={
+                                                    <Icon type="shop" style={{fontSize: "7em", marginTop: 5}} />
+                                                }>
+                                                    <Meta title="Empresa de producto" description="Pequeña o mediana empresa dedicada a la venta y distribucion de productos"/>
+                                                </Card>
+                                            </Badge>
+                                            <Badge dot={this.state.selectServicio} style={{height: 12, width: 12, background: "#52c41a"}}>
+                                                <Card hoverable style={{ height: 250, width: 300, padding: 10 }} cover={
+                                                    <Icon type="team" style={{fontSize: "7em", marginTop: 5}}/>
+                                                }>
+                                                    <Meta title="Empresa de servicio" description="Empresa orientada a servicios diversos"/>
+                                                </Card>
+                                            </Badge>
                                         </section>
                                     </Form>
                                 :
@@ -152,7 +159,7 @@ class CheckIn extends Component {
                                     </Form>
                             }
                         </div>
-                        <div style={{position: "absolute", bottom: 10}}>
+                        <div className="footer" style={{position: "absolute", bottom: 10}}>
                             <Button onClick={() => this.prev()}>Anterior</Button>
                             <Button style={{ marginLeft: 8 }} type="primary" onClick={() => this.next()}>Siguiente</Button>
                         </div>
