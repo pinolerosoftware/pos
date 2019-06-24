@@ -19,7 +19,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3001/api",
+  "proxy": "https://web-api-pos.herokuapp.com/api",
   "eslintConfig": {
     "extends": "react-app"
   },
