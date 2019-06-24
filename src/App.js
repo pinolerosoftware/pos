@@ -1,38 +1,38 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
-//import { Layout, Menu, Icon, Avatar } from 'antd';
-//import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-//import PrincipalProducts from './modules/PrincipalProducts';
+import { Layout, Menu, Icon, Avatar } from 'antd';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import PrincipalProducts from './modules/PrincipalProducts';
 	//import PrincipalClients from './modules/PrincipalClients';
-//import Dashboard from './modules/dashboard/Dashboard';
-//import Sales from './modules/sales/Sales';
-import CheckIn from './modules/checkIn/CheckIn';
+import Dashboard from './modules/dashboard/Dashboard';
+import Sales from './modules/sales/Sales';
+//import CheckIn from './modules/checkIn/CheckIn';
 //import Home from './modules/principal/Home';
 
-//const { Header, Content, Sider } = Layout;
-// const icoStyle = {
-// 	float: "right", 
-// 	marginTop: "10px", 
-// 	marginRight: "20px",
-// 	borderRadius: "50%",
-// 	cursor: "pointer"
-// }
+const { Header, Content, Sider } = Layout;
+const icoStyle = {
+	float: "right", 
+	marginTop: "10px", 
+	marginRight: "20px",
+	borderRadius: "50%",
+	cursor: "pointer"
+}
 
-// const ListMenu = [
-// 	{
-// 		to: "/",
-// 		icon: "appstore",
-// 		text: "Dashboard"
-// 	},{
-// 		to: "/products",
-// 		icon: "appstore",
-// 		text: "Productos"
-// 	},{
-// 		to: "/sales",
-// 		icon: "appstore",
-// 		text: "Ventas"
-// 	}
-// ]
+const ListMenu = [
+	{
+		to: "/",
+		icon: "appstore",
+		text: "Dashboard"
+	},{
+		to: "/products",
+		icon: "appstore",
+		text: "Productos"
+	},{
+		to: "/sales",
+		icon: "appstore",
+		text: "Ventas"
+	}
+]
 
 class App extends Component {
 	constructor(props){
@@ -50,7 +50,7 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-			{/* <Router>
+			<Router>
 				<Layout style={{ minHeight: '100vh' }}>
 					<Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
 						<div className="logo" />
@@ -81,8 +81,9 @@ class App extends Component {
 							</Content>
 					</Layout>
 				</Layout>
-			</Router> */}
-			<CheckIn />
+			</Router>
+			{/* <Home /> */}
+			{/* <CheckIn /> */}
 			</div>
 		);
 	}
