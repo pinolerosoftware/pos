@@ -15,7 +15,7 @@ const formItemLayout = {
     wrapperCol: {
       span: 16 ,
     },
-  };
+};
 
 class FormProducts extends Component {
     constructor(props){
@@ -26,6 +26,8 @@ class FormProducts extends Component {
             categories: [],
             visibleFormCategory: false,
             visibleFormLocation: false,
+            cantidadCategories: 0,
+            cantidadLocations: 0,
         }
         this.onChange = this.onChange.bind(this);
         this.onSave = this.onSave.bind(this);
@@ -85,19 +87,33 @@ class FormProducts extends Component {
             this.setState({visibleFormCategory: true})
         if(String(field) === "location" && Number(value) === 0)
             this.setState({visibleFormLocation: true})
+
+        this.setState({
+            cantidadCategories: this.state.categories.length, 
+            cantidadLocations: this.state.locations.length
+        })
     }
 
     onCloseCategory() {
-        let {categories} = this.state
-        console.log(categories)
-        this.props.form.setFieldsValue({name: categories[categories.length - 1].name})
+        let {categories, cantidadCategories} = this.state
+
+        if(cantidadCategories === categories.length)
+            this.props.form.setFieldsValue({category: ''})
+        else 
+            this.props.form.setFieldsValue({category: categories[categories.length - 1].name})
+
         this.setState({visibleFormCategory: false})
     }
 
     onCloseLocation() {
-        //let {locations} = this.state
+        let {locations, cantidadLocations} = this.state
+        
+        if(cantidadLocations === locations.length)
+            this.props.form.setFieldsValue({location: ''})
+        else 
+            this.props.form.setFieldsValue({location: locations[locations.length - 1].name})
+
         this.setState({visibleFormLocation: false})
-        this.onLoadLocations()
     }
 
     render(){
@@ -118,7 +134,7 @@ class FormProducts extends Component {
                         {getFieldDecorator('category',{
                             rules: [{ required: true, message: 'El campo categoría es requerido', whitespace: true }],
                         })(
-                            <Select onChange={(e) => this.onChange('category', e)}>
+                            <Select onChange={ e => this.onChange('category', e)} placeholder="Seleccionar categoría">
                                 {categories.map((item, i) => <Option key={`${i}-${item.name}`}>{item.name}</Option>)}
                                 <Option key={0} style={{color: "#1890ff"}}>Agregar Categoría</Option>
                             </Select>
@@ -128,7 +144,7 @@ class FormProducts extends Component {
                         {getFieldDecorator('location',{
                             rules: [{ required: true, message: 'El campo ubicación es requerido', whitespace: true }],
                         })(
-                            <Select onChange={(e) => this.onChange('location', e)}>
+                            <Select onChange={ e => this.onChange('location', e)} placeholder="Seleccionar ubicación">
                                 {locations.map((item, i) => <Option key={`${i}-${item.name}`}>{item.name}</Option>)}
                                 <Option key={0} style={{color: "#1890ff"}}>Ageregar Ubicación</Option>
                             </Select>
@@ -158,8 +174,8 @@ class FormProducts extends Component {
                 <Drawer title="Nueva Categoría" width={460} placement="right" closable={true} onClose={() => {this.setState({visibleFormCategory: false}); this.onCloseCategory()}} visible={visibleFormCategory}>
                     <FormCategory buttons={true} match={this.props.match} onClose={()=> {this.onLoadCategories(); this.onCloseCategory()}}/>
                 </Drawer>
-                <Drawer title="Nueva Ubicación" width={460} placement="right" closable={true} onClose={() => this.setState({visibleFormLocation: false})} visible={visibleFormLocation}>
-                    <FormLocations buttons={true} match={this.props.match} onClose={this.onCloseLocation}/>
+                <Drawer title="Nueva Ubicación" width={460} placement="right" closable={true} onClose={() => {this.setState({visibleFormLocation: false}); this.onCloseLocation()}} visible={visibleFormLocation}>
+                    <FormLocations buttons={true} match={this.props.match} onClose={() => {this.onLoadLocations(); this.onCloseLocation()}}/>
                 </Drawer>
             </div>
         )
