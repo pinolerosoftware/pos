@@ -94,15 +94,15 @@ class Sales extends Component {
                             <Card hoverable style={{ width: 200, marginTop: 10 }} onClick={() =>this.addToCar(item)} cover={
                                 <Icon type="shop" style={{fontSize: "9em", marginTop: 5}} />
                             }>
-                                <Meta title={item.name} description={item.description || '...'}/>
+                                <Meta style={{whiteSpace: "nowrap"}} title={item.name} description={item.description}/>
                             </Card>
                         </Col>
                     )}
                 </Col>
                 <Col span={8}>
                     <section>
-                        <h2>Caja</h2>
-                        <br/>
+                        {/* <h2>Caja</h2>
+                        <br/> */}
                         <List
                             header={
                                 <section>

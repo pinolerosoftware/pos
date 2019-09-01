@@ -29,8 +29,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "devDependencies": {
-    "react-app-rewire-less": "^2.1.3",
-    "react-app-rewired": "^2.0.1"
-  }
+  "devDependencies": {}
 }
