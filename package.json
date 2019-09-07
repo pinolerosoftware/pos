@@ -3,9 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "antd": "^3.10.9",
+    "antd": "^3.23.2",
     "chart.js": "^2.7.3",
-    "faker": "^4.1.0",
     "node-sass": "^4.11.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -29,5 +28,7 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "devDependencies": {}
+  "devDependencies": {
+    "faker": "^4.1.0"
+  }
 }
