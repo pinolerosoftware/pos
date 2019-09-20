@@ -12,12 +12,14 @@ class Sales extends Component {
             loading: false,
             list: [],
             shoppingList: [],
+            total: 0
         }
         this.onChange = this.onChange.bind(this);
         this.addToCar = this.addToCar.bind(this);
         this.removeToCar = this.removeToCar.bind(this);
         this.increase = this.increase.bind(this);
         this.decline = this.decline.bind(this);
+        this.calculateTotal = this.calculateTotal.bind(this);
     }
 
     componentDidMount(){
@@ -38,16 +40,16 @@ class Sales extends Component {
     }
     
     addToCar(item){
-        let {shoppingList} = this.state
+        let {shoppingList, total} = this.state
         if(!shoppingList.find(product => product._id === item._id)){
             item = {...item, quantity: 1}
             shoppingList = [...shoppingList, item]
-            this.setState({shoppingList})
+            this.setState({shoppingList, total}, () => this.calculateTotal())
         }
     }
 
     removeToCar(item){
-        let {shoppingList} = this.state
+        let {shoppingList, total} = this.state
         let list = [];
         shoppingList.find(product => {
             if(product._id !== item._id)
@@ -55,7 +57,7 @@ class Sales extends Component {
 
             return false;
         });
-        this.setState({shoppingList: list});
+        this.setState({shoppingList: list, total}, () => this.calculateTotal());
     }
 
     increase(id) {
@@ -66,7 +68,7 @@ class Sales extends Component {
             
             return true
         })
-        this.setState(shoppingList)
+        this.setState(shoppingList, () => this.calculateTotal())
     }
 
     decline(id) {
@@ -77,11 +79,18 @@ class Sales extends Component {
 
             return true
         })
-        this.setState(shoppingList)
+        this.setState(shoppingList, () => this.calculateTotal())
+    }
+
+    calculateTotal() {
+        let {shoppingList, total} = this.state
+        total = 0
+        shoppingList.map(item => total += (item.price * item.quantity))
+        this.setState({total})
     }
 
     render(){
-        let {list, shoppingList} = this.state;
+        let {list, shoppingList, total} = this.state;
         return (
             <Row>
                 <Col span={16}>
@@ -137,7 +146,11 @@ class Sales extends Component {
                                     </Col>
                                 </List.Item>
                             )}
-                        />
+                        >
+                            <List.Item style={{cursor:"pointer"}}>
+                                <h3>Total: {total}</h3>
+                            </List.Item>
+                        </List>
                         <Row style={{textAlign: "right"}}>
                             <br/>
                             <Button type="primary">Pagar</Button>
