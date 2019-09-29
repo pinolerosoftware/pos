@@ -26,7 +26,7 @@ class FormLocations extends Component {
         let {match} = this.props
         if (match.params.id) {
             let {id} = match.params
-            fetch(`/location/${id}`)
+            fetch(`${process.env.REACT_APP_PROXY}/location/${id}`)
             .then(res => res.json())
             .then(data => console.log(data))
         }
@@ -35,7 +35,7 @@ class FormLocations extends Component {
     onSave(){
         this.props.form.validateFields((err, data) => {
             if (!err) {
-              fetch("/locations", {
+              fetch(`${process.env.REACT_APP_PROXY}/locations`, {
                   method: 'POST',
                   body: JSON.stringify(data),
                   headers:{

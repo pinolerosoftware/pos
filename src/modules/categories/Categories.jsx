@@ -20,13 +20,13 @@ class Categories extends Component {
     }
 
     onGetData() {
-        fetch("/categories")
+        fetch(`${process.env.REACT_APP_PROXY}/categories`)
         .then(res => res.json())
         .then(data => this.setState({categories: data.categories, loading: false}))
     }
 
     onDelete(Id) {
-        fetch(`/categories/${Id}`, {
+        fetch(`${process.env.REACT_APP_PROXY}/categories/${Id}`, {
             method: 'DELETE',
             headers:{
                 'Content-Type': 'application/json'
@@ -83,7 +83,7 @@ class Categories extends Component {
                 <Route path={`${match.path}`} exact render={() =>
                     <section>
                         <Link to={`${match.url}/new`}>
-                            <Button style={{marginBottom: 15}}>
+                            <Button type="primary" style={{marginBottom: 15}}>
                                 Agregar Categoría
                             </Button>
                         </Link>

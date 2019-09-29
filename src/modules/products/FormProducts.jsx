@@ -44,13 +44,13 @@ class FormProducts extends Component {
     }
     
     onLoadCategories() {
-        fetch("/categories")
+        fetch(`${process.env.REACT_APP_PROXY}/categories`)
         .then(res => res.json())
         .then(data => this.setState({categories: data.categories}));
     }
     
     onLoadLocations() {
-        fetch("/locations")
+        fetch(`${process.env.REACT_APP_PROXY}/locations`)
         .then(res => res.json())
         .then(data => this.setState({locations: data.locations}));
     }
@@ -58,7 +58,7 @@ class FormProducts extends Component {
     onSave() {
         this.props.form.validateFields((err, data) => {
             if (!err) {
-              fetch("/products", {
+              fetch(`${process.env.REACT_APP_PROXY}/products`, {
                   method: 'POST',
                   body: JSON.stringify(data),
                   headers:{
@@ -168,7 +168,7 @@ class FormProducts extends Component {
                         <Link to="/products">
                             <Button style={{marginRight: 10}}>Cancelar</Button>
                         </Link>
-                        <Button onClick={this.onSave}>Guardar</Button>
+                        <Button type="primary" onClick={this.onSave}>Guardar</Button>
                     </Item>
                 </Form>
                 <Drawer title="Nueva Categoría" width={460} placement="right" closable={true} onClose={() => {this.setState({visibleFormCategory: false}); this.onCloseCategory()}} visible={visibleFormCategory}>

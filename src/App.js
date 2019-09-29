@@ -3,9 +3,9 @@ import 'antd/dist/antd.css';
 import { Layout, Menu, Icon, Avatar } from 'antd';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import PrincipalProducts from './modules/PrincipalProducts';
-	//import PrincipalClients from './modules/PrincipalClients';
 import Dashboard from './modules/dashboard/Dashboard';
 import Sales from './modules/sales/Sales';
+//import PrincipalClients from './modules/PrincipalClients';
 //import CheckIn from './modules/checkIn/CheckIn';
 //import Home from './modules/principal/Home';
 

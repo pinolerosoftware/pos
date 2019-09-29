@@ -18,13 +18,13 @@ export default class Products extends Component {
     }
 
     onGetData(){
-        fetch("/products")
+        fetch(`${process.env.REACT_APP_PROXY}/products`)
         .then(res => res.json())
         .then(data => this.setState({products: data.Products, loading: false}))
     }
 
     onDelete(Id) {
-        fetch(`/products/${Id}`, {
+        fetch(`${process.env.REACT_APP_PROXY}/products/${Id}`, {
             method: 'DELETE',
             headers:{
                 'Content-Type': 'application/json'
@@ -84,7 +84,7 @@ export default class Products extends Component {
             <div>
                 <section>
                     <Link to={`${match.url}/new`}>
-                        <Button style={{marginBottom: 15}}>
+                        <Button type="primary" style={{marginBottom: 15}}>
                             Agregar Producto
                         </Button>
                     </Link>

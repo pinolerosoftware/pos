@@ -21,13 +21,13 @@ class Locations extends Component {
     }
     
     onGetData(){
-        fetch("/locations")
+        fetch(`${process.env.REACT_APP_PROXY}/locations`)
         .then(res => res.json())
         .then(data => this.setState({locations: data.locations, loading: false}))
     }
 
     onDelete(Id) {
-        fetch(`/locations/${Id}`, {
+        fetch(`${process.env.REACT_APP_PROXY}/locations/${Id}`, {
             method: 'DELETE',
             headers:{
                 'Content-Type': 'application/json'
@@ -84,7 +84,7 @@ class Locations extends Component {
                 <Route path={`${match.path}`} exact component={() =>
                     <section>
                         <Link to={`${match.url}/new`}>
-                            <Button style={{marginBottom: 15}}>
+                            <Button type="primary" style={{marginBottom: 15}}>
                                 Agregar Ubicación
                             </Button>
                         </Link>

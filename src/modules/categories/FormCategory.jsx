@@ -28,7 +28,7 @@ class FormCategory extends Component {
             let {match} = this.props
             if (match.params.id) {
                 let {id} = match.params
-                fetch(`/categories/${id}`)
+                fetch(`${process.env.REACT_APP_PROXY}/categories/${id}`)
                 .then(res => res.json())
                 .then(data => this.setState({data: data.category}, () =>{
                     this.props.form.setFieldsValue({name: data.category.name})
@@ -41,7 +41,7 @@ class FormCategory extends Component {
         this.props.form.validateFields((err, data) => {
             if (!err) {
                 if (!this.props.match.params.id) {
-                    fetch("/categories", {
+                    fetch(`${process.env.REACT_APP_PROXY}/categories`, {
                         method: 'POST',
                         body: JSON.stringify(data),
                         headers:{
@@ -51,7 +51,7 @@ class FormCategory extends Component {
                     .then(res => res.json())
                     .then(data => this.showModal(data.message))
                 }else{
-                    fetch(`/categories/${this.props.match.params.id}`, {
+                    fetch(`${process.env.REACT_APP_PROXY}/categories/${this.props.match.params.id}`, {
                         method: 'PUT',
                         body: JSON.stringify(data),
                         headers:{
