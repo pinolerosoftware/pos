@@ -27,7 +27,7 @@ class Sales extends Component {
     }
 
     onGetData(){
-        fetch("/products")
+        fetch(`${process.env.REACT_APP_PROXY}/products`)
         .then(res => res.json())
         .then(data => this.setState({products: data.Products, list: data.Products, loading: false}))
     }
