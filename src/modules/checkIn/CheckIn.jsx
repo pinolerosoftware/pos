@@ -70,12 +70,6 @@ class CheckIn extends Component {
                 </Header>
                 <Content style={{ padding: '15px' }}>
                     <div style={{ background: '#fff', padding: 15, minHeight: 500 }}>
-                        {/*<article style={{textAlign: "center"}}> 
-                            <h1>Registrate de forma gratuita</h1>
-                            <Item>
-                                <Input size="large"/>
-                            </Item>
-                        </article>*/}
                         <br />
                         <Steps progressDot current={current} style={{marginBottom: 10}}>
                             {steps.map(item => 

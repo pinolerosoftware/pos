@@ -53,7 +53,7 @@ class Sales extends Component {
         let list = [];
         shoppingList.find(product => {
             if(product._id !== item._id)
-                list.push(product)
+                list = [...list, product]
 
             return false;
         });
@@ -89,6 +89,10 @@ class Sales extends Component {
         this.setState({total})
     }
 
+    onSaveSales() {
+        console.log(this.state.shoppingList);
+    }
+
     render(){
         let {list, shoppingList, total} = this.state;
         return (
@@ -110,8 +114,6 @@ class Sales extends Component {
                 </Col>
                 <Col span={8}>
                     <section>
-                        {/* <h2>Caja</h2>
-                        <br/> */}
                         <List
                             header={
                                 <section>
@@ -144,8 +146,7 @@ class Sales extends Component {
                                             </Button>
                                         </ButtonGroup>
                                     </Col>
-                                </List.Item>
-                            )}
+                                </List.Item> )}
                         >
                             <List.Item style={{cursor:"pointer"}}>
                                 <h3>Total: {total}</h3>
@@ -153,7 +154,7 @@ class Sales extends Component {
                         </List>
                         <Row style={{textAlign: "right"}}>
                             <br/>
-                            <Button type="primary">Pagar</Button>
+                            <Button type="primary" onClick={() => this.onSaveSales()}>Pagar</Button>
                         </Row>
                     </section>
                 </Col>        
