@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PageLayout from '../../layout/PageLayout';
 import {Row, Col} from 'antd'
 import Chart from 'chart.js'
 
@@ -85,19 +86,21 @@ class Dashboard extends Component {
     }
     render() {
         return (
-            <div>
-                <Row gutter={12}>
-                    <Col span={24}>
-                        <canvas id="myChart2" width="500" height="120"></canvas>
-                    </Col>
-                    <Col span={12}>
-                        <canvas id="myChart" width="250" height="120"></canvas>
-                    </Col>
-                    <Col span={12}>
-                        <canvas id="myChart3" width="250" height="120"></canvas>
-                    </Col>
-                </Row>
-            </div>
+            <PageLayout>
+                <div>
+                    <Row gutter={12}>
+                        <Col span={24}>
+                            <canvas id="myChart2" width="500" height="120"></canvas>
+                        </Col>
+                        <Col span={12}>
+                            <canvas id="myChart" width="250" height="120"></canvas>
+                        </Col>
+                        <Col span={12}>
+                            <canvas id="myChart3" width="250" height="120"></canvas>
+                        </Col>
+                    </Row>
+                </div>
+            </PageLayout>
         )
     }
 }
