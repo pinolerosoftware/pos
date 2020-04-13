@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import { Redirect, Link } from 'react-router-dom'
-import { Form, Input, Button, Row, Col, Card, notification, Spin } from 'antd';
+import axios from 'axios'
+import { Form, Input, Button, Row, Col, Card, Spin } from 'antd';
 import { Api, RouterPage } from '../../Config';
 import Authenticate from '../../services/Authenticate';
-import axios from 'axios'
+import { Notification, NotificationType } from '../../component/Notification';
 
 const tailLayout = {
     wrapperCol: { offset: 10, span: 8 },
@@ -36,14 +37,12 @@ class Login extends Component {
         };
         axios.post(Api.login, user)
         .then(res => {
+            console.log(res);
             Authenticate.signIn(res.data);
             this.setState({ redirectMenu: true, loading: false });
         })
         .catch(error => {            
-            notification.error({
-                message: 'Error',
-                description: error.response.data.message
-            });            
+            Notification('Error', error.response.data.error.message, NotificationType.Error);          
             this.setState({ loading: false });
         });
     }
