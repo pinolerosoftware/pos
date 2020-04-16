@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Redirect } from 'react-router-dom'
 import { Form, Spin, Input, Button, Checkbox } from 'antd';
-import axios from 'axios'
+import HttpClient from '../../services/HttpClient';
 import { Api, RouterPage } from '../../Config';
 import PageLayout from '../../layout/PageLayout';
 import { Notification, NotificationType } from '../../component/Notification';
@@ -10,6 +10,7 @@ import Authenticate from '../../services/Authenticate';
 class LocationEdit extends Component {
     constructor(props){
         super(props);
+        this.httpClient = new HttpClient();
         this.state = {            
             companyId: Authenticate.getCompanyId(),
             userId: Authenticate.getUserId(),
@@ -20,23 +21,21 @@ class LocationEdit extends Component {
         this.onClickGuardar = this.onClickGuardar.bind(this);
         this.onChangeActive = this.onChangeActive.bind(this);
     }
-    componentDidMount(){
+    async componentDidMount(){        
         this.setState({ loading: true });
         const { form } = this.props;
         const url = `${Api.location}${this.props.match.params.id}`;
-        axios.get(url,{
-            params: {
-                companyId: this.state.companyId
-            }
-        })
-        .then(res => {              
-            form.setFieldsValue(res.data);            
-            this.setState({ loading: false, checkActive: res.data.active });
-        })
-        .catch(error => {            
-            Notification('Error', error.response.data.error.message, NotificationType.Error);
+        const getHttpClient = this.httpClient;
+        const data = await getHttpClient.get(url);        
+        if(data){
+            form.setFieldsValue(data);            
+            this.setState({ loading: false, checkActive: data.active });
+            return;
+        }        
+        if(getHttpClient.error){
+            Notification('Error', getHttpClient.error, NotificationType.Error);
             this.setState({ loading: false });
-        });
+        }        
     }
     onClickGuardar(e){
         e.preventDefault();
@@ -47,20 +46,25 @@ class LocationEdit extends Component {
             }
         });
     }
-    save(data){
+    async save(data){
         const url = `${Api.location}${this.props.match.params.id}`
         const location = {            
-            name: data.name,            
+            _id: this.props.match.params.id,
+            name: data.name,         
+            companyId: this.state.companyId,   
             active: this.state.checkActive
         };        
-        axios.put(url, location)
-        .then(res => {            
+        const putHttpClient = this.httpClient;
+        const dataUpdated = await putHttpClient.put(url, location);        
+        if(dataUpdated){
             this.setState({ loading: false, redirectIndex: true });
-        })
-        .catch(error => {            
-            Notification('Error', error.response.data.error.message, NotificationType.Error);
+            return;
+        }
+        console.log(putHttpClient.error);
+        if(putHttpClient.error){
+            Notification('Error', putHttpClient.error, NotificationType.Error);
             this.setState({ loading: false });
-        });
+        }
     }
     onChangeActive(e){
         this.setState({ checkActive: e.target.checked });

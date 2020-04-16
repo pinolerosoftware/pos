@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
 import { Redirect } from 'react-router-dom'
 import { Form, Spin, Input, Button } from 'antd';
-import axios from 'axios'
 import { Api, RouterPage } from '../../Config';
 import PageLayout from '../../layout/PageLayout';
 import { Notification, NotificationType } from '../../component/Notification';
 import Authenticate from '../../services/Authenticate';
+import HttpClient from '../../services/HttpClient';
 
 class LocationNew extends Component {
     constructor(props){
         super(props);
+        this.httpClient = new HttpClient();
         this.state = {
             companyId: Authenticate.getCompanyId(),
             userId: Authenticate.getUserId(),
@@ -27,20 +28,22 @@ class LocationNew extends Component {
             }
         });
     }
-    save(data){
+    async save(data){
         const location = {
             name: data.name,
             companyId: this.state.companyId,
             active: true
-        };        
-        axios.post(Api.location, location)
-        .then(res => {            
+        };
+        const postHttpClient = this.httpClient;
+        const dataCreated = await postHttpClient.post(Api.location, location);
+        if(dataCreated){
             this.setState({ loading: false, redirectIndex: true });
-        })
-        .catch(error => {            
-            Notification('Error', error.response.data.error.message, NotificationType.Error);
+            return;
+        }
+        if(postHttpClient.error){
+            Notification('Error', postHttpClient.error, NotificationType.Error);
             this.setState({ loading: false });
-        });
+        }        
     }
     render(){
         const { getFieldDecorator } = this.props.form;
