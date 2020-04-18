@@ -79,7 +79,7 @@ class Category extends Component {
 
     render(){        
         return(
-            <PageLayout>
+            <PageLayout menuKey={RouterPage.category.index} menuOpenKey="catalogo">
                 <Spin spinning={this.state.loading}>
                     <Row>
                         <Col>                                                

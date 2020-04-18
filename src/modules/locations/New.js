@@ -15,7 +15,7 @@ class LocationNew extends Component {
             companyId: Authenticate.getCompanyId(),
             userId: Authenticate.getUserId(),
             loading: false,
-            redirectIndex: false
+            redirectIndex: false            
         };
         this.onClickGuardar = this.onClickGuardar.bind(this);
     }
@@ -49,7 +49,7 @@ class LocationNew extends Component {
         const { getFieldDecorator } = this.props.form;
         return this.state.redirectIndex ? <Redirect to={RouterPage.locations.index}/> :
         (
-            <PageLayout>
+            <PageLayout menuKey={RouterPage.locations.index} menuOpenKey="catalogo">
                 <Spin spinning={this.state.loading}>                    
                     <Form
                         onSubmit={this.onClickGuardar}

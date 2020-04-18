@@ -75,7 +75,7 @@ class CategoryEdit extends Component {
         const { getFieldDecorator } = this.props.form;
         return this.state.redirectIndex ? <Redirect to={RouterPage.category.index}/> :
         (
-            <PageLayout>
+            <PageLayout menuKey={RouterPage.category.index} menuOpenKey="catalogo">
                 <Spin spinning={this.state.loading}>
                     <Form
                         onSubmit={this.onClickGuardar}

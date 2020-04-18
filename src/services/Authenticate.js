@@ -2,6 +2,7 @@ import axios from 'axios';
 const tokenKey = 'token';
 const userIdKey = 'userId';
 const companyIdKey = 'companyId';
+const companyNameKey = 'companyName'
 
 const signIn = (data) => {    
     const { token, userId, companyId } = data;
@@ -29,8 +30,17 @@ const getUserId = () => {
     return userId;
 }
 
+const getComanyName = () => {
+    const companyName = localStorage.getItem(companyNameKey);
+    return companyName;
+}
+
 const logOut = () => {
     localStorage.clear();
+}
+
+const setCompanyData = (data) => {
+    localStorage.setItem(companyNameKey, data.name);
 }
 
 export default {
@@ -38,5 +48,7 @@ export default {
     isAuth,
     getCompanyId,
     getUserId,
-    logOut
+    logOut,
+    setCompanyData,
+    getComanyName
 }

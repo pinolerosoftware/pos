@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { Redirect, Link } from 'react-router-dom'
-import axios from 'axios'
+import { Redirect, Link } from 'react-router-dom';
+import HttpClient from '../../services/HttpClient';
 import { Form, Input, Button, Row, Col, Card, Spin } from 'antd';
 import { Api, RouterPage } from '../../Config';
 import Authenticate from '../../services/Authenticate';
@@ -15,8 +15,9 @@ class Login extends Component {
         super(props);
         this.state = {
             loading: false,
-            redirectMenu: Authenticate.isAuth(),            
+            redirectMenu: Authenticate.isAuth(),
         }
+        this.httpClient = new HttpClient();
         this.onSubmit = this.onSubmit.bind(this);
     }
 
@@ -30,21 +31,37 @@ class Login extends Component {
         });
     }
 
-    login(data){
+    async login(data){
         const user = {
             email: data.email,
             password: data.password
         };
-        axios.post(Api.login, user)
-        .then(res => {
-            console.log(res);
-            Authenticate.signIn(res.data);
+        const loginHttpClient = this.httpClient;
+        const dataToken = await loginHttpClient.post(Api.login, user);
+        if(dataToken){
+            Authenticate.signIn(dataToken);
+            if(Authenticate.isAuth())
+                await this.loadDataCompany();
             this.setState({ redirectMenu: true, loading: false });
-        })
-        .catch(error => {            
-            Notification('Error', error.response.data.error.message, NotificationType.Error);          
+            return;
+        }
+        if(loginHttpClient.error){
+            Notification('Error', loginHttpClient.error, NotificationType.Error);          
             this.setState({ loading: false });
-        });
+        }
+    }
+
+    async loadDataCompany(){
+        const companyHttpClient = this.httpClient;
+        const url = `${Api.company}${Authenticate.getCompanyId()}`
+        const data = await companyHttpClient.get(url);
+        if(data){
+            Authenticate.setCompanyData(data);
+            return;
+        }
+        if(companyHttpClient.error){
+            Notification('Error', companyHttpClient.error, NotificationType.Error);
+        }
     }
 
     render() {

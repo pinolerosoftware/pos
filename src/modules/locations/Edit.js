@@ -72,7 +72,7 @@ class LocationEdit extends Component {
         const { getFieldDecorator } = this.props.form;
         return this.state.redirectIndex ? <Redirect to={RouterPage.locations.index}/> :
         (
-            <PageLayout>
+            <PageLayout menuKey={RouterPage.locations.index} menuOpenKey="catalogo">
                 <Spin spinning={this.state.loading}>
                     <Form
                         onSubmit={this.onClickGuardar}

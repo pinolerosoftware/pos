@@ -17,7 +17,10 @@ class Location extends Component {
             userId: Authenticate.getUserId(),
             columns: this.getColumns(),
             data: [],
-            loading: false            
+            loading: false,
+            navBack:[
+                { name: 'Bodega' }                
+            ]
         };        
     }
     
@@ -79,7 +82,7 @@ class Location extends Component {
 
     render(){        
         return(
-            <PageLayout>
+            <PageLayout menuKey={RouterPage.locations.index} menuOpenKey="catalogo">
                 <Spin spinning={this.state.loading}>
                     <Row>
                         <Col>                                                
