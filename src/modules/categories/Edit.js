@@ -7,7 +7,7 @@ import PageLayout from '../../layout/PageLayout';
 import { Notification, NotificationType } from '../../component/Notification';
 import Authenticate from '../../services/Authenticate';
 
-class LocationEdit extends Component {
+class CategoryEdit extends Component {
     constructor(props){
         super(props);
         this.httpClient = new HttpClient();
@@ -21,12 +21,13 @@ class LocationEdit extends Component {
         this.onClickGuardar = this.onClickGuardar.bind(this);
         this.onChangeActive = this.onChangeActive.bind(this);
     }
+
     async componentDidMount(){        
         this.setState({ loading: true });
         const { form } = this.props;
-        const url = `${Api.location}${this.props.match.params.id}`;
+        const url = `${Api.category}${this.props.match.params.id}`;        
         const getHttpClient = this.httpClient;
-        const data = await getHttpClient.get(url);        
+        const data = await getHttpClient.get(url);
         if(data){
             form.setFieldsValue(data);            
             this.setState({ loading: false, checkActive: data.active });
@@ -37,6 +38,7 @@ class LocationEdit extends Component {
             this.setState({ loading: false });
         }        
     }
+
     onClickGuardar(e){
         e.preventDefault();
         this.props.form.validateFields((err, data) => {
@@ -47,15 +49,16 @@ class LocationEdit extends Component {
         });
     }
     async save(data){
-        const url = `${Api.location}${this.props.match.params.id}`
-        const location = {            
+        const url = `${Api.category}${this.props.match.params.id}`
+        const category = {            
             _id: this.props.match.params.id,
             name: data.name,         
             companyId: this.state.companyId,   
             active: this.state.checkActive
         };        
         const putHttpClient = this.httpClient;
-        const dataUpdated = await putHttpClient.put(url, location);        
+        const dataUpdated = await putHttpClient.put(url, category);
+        console.log(dataUpdated);
         if(dataUpdated){
             this.setState({ loading: false, redirectIndex: true });
             return;
@@ -70,7 +73,7 @@ class LocationEdit extends Component {
     }
     render(){
         const { getFieldDecorator } = this.props.form;
-        return this.state.redirectIndex ? <Redirect to={RouterPage.locations.index}/> :
+        return this.state.redirectIndex ? <Redirect to={RouterPage.category.index}/> :
         (
             <PageLayout>
                 <Spin spinning={this.state.loading}>
@@ -106,4 +109,4 @@ class LocationEdit extends Component {
     }
 }
 
-export default LocationEdit = Form.create()(LocationEdit);
+export default CategoryEdit = Form.create()(CategoryEdit);

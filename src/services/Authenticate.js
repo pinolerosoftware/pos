@@ -29,9 +29,14 @@ const getUserId = () => {
     return userId;
 }
 
+const logOut = () => {
+    localStorage.clear();
+}
+
 export default {
     signIn,
     isAuth,
     getCompanyId,
-    getUserId
+    getUserId,
+    logOut
 }

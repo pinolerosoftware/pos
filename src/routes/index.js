@@ -9,6 +9,9 @@ import Product from '../modules/products/Product';
 import Location from '../modules/locations/Location';
 import LocationNew from '../modules/locations/New';
 import LocationEdit from '../modules/locations/Edit';
+import Category from '../modules/categories/Category';
+import CategoryNew from '../modules/categories/New';
+import CategoryEdit from '../modules/categories/Edit';
 
 export const Routes = (
     <Switch>
@@ -19,5 +22,8 @@ export const Routes = (
         <AuthRouter exact path={RouterPage.locations.index} component={Location}/>
         <AuthRouter exact path={RouterPage.locations.new} component={LocationNew}/>
         <AuthRouter exact path={`${RouterPage.locations.edit}:id`} component={LocationEdit}/>
+        <AuthRouter exact path={RouterPage.category.index} component={Category}/>
+        <AuthRouter exact path={RouterPage.category.new} component={CategoryNew}/>
+        <AuthRouter exact path={`${RouterPage.category.edit}:id`} component={CategoryEdit}/>
     </Switch>
 );

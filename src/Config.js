@@ -6,6 +6,7 @@ export const Api = {
     register: `${baseUrl}users/signup/`,
     company: `${baseUrl}companies/`,
     location: `${baseUrl}locations/`,
+    category: `${baseUrl}categories/`,
     product: `${baseUrl}products/`
 };
 

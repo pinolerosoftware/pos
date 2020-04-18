@@ -8,7 +8,7 @@ import Grid from '../../component/Grid';
 import Authenticate from '../../services/Authenticate';
 import HttpClient from '../../services/HttpClient';
 
-class Location extends Component {
+class Category extends Component {
     constructor(props){
         super(props);
         this.httpClient = new HttpClient();
@@ -17,10 +17,10 @@ class Location extends Component {
             userId: Authenticate.getUserId(),
             columns: this.getColumns(),
             data: [],
-            loading: false            
-        };        
+            loading: false
+        };
     }
-    
+
     getColumns(){
         return [
             {
@@ -42,10 +42,10 @@ class Location extends Component {
                 render: (value, record) => {
                     return( 
                         <div>
-                            <Link style={{padding: 5}} to={`${RouterPage.locations.edit}${record._id}`}><Icon type='edit' />Editar</Link>
+                            <Link style={{padding: 5}} to={`${RouterPage.category.edit}${record._id}`}><Icon type='edit' />Editar</Link>
                             <Popconfirm
-                                title="¿Seguro que desea eliminar la bodega?"
-                                onConfirm={() => this.removeLocation(record._id)}
+                                title="¿Seguro que desea eliminar la categoria?"
+                                onConfirm={() => this.remove(record._id)}
                                 okText="Si"
                                 cancelText="No"
                                 key={record._id}
@@ -58,13 +58,13 @@ class Location extends Component {
                     );
                 }
             }
-        ];
-    }    
+        ];       
+    }
 
-    async removeLocation(id){
+    async remove(id){
         this.setState({ loading: true });
         const removeHttpClient = this.httpClient;
-        const url = `${Api.location}${id}`;
+        const url = `${Api.category}${id}`;
         const data = await removeHttpClient.remove(url);
         if(data){
             this.setState({ loading: false});
@@ -83,9 +83,9 @@ class Location extends Component {
                 <Spin spinning={this.state.loading}>
                     <Row>
                         <Col>                                                
-                            <Link to={RouterPage.locations.new}>
+                            <Link to={RouterPage.category.new}>
                                 <Button type="primary" style={{ marginBottom: 16 }}>
-                                    Nueva Bodega                            
+                                    Nueva Categoria      
                                 </Button>
                             </Link>
                         </Col>
@@ -94,7 +94,7 @@ class Location extends Component {
                         <Grid 
                             rowKey="_id" 
                             columns={this.state.columns} 
-                            url={Api.location} 
+                            url={Api.category} 
                             companyId={this.state.companyId} 
                             ref={grid => {this.grid = grid}}
                         >
@@ -106,4 +106,4 @@ class Location extends Component {
     }
 }
 
-export default Location;
+export default Category;
