@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Col, Button, Icon, Popconfirm, Spin } from 'antd';
+import { Row, Col, Button, Popconfirm, Spin, Tooltip } from 'antd';
+import { PlusOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Api, RouterPage  } from '../../Config';
 import PageLayout from '../../layout/PageLayout';
 import { Notification, NotificationType } from '../../component/Notification';
@@ -42,7 +43,12 @@ class Location extends Component {
                 render: (value, record) => {
                     return( 
                         <div>
-                            <Link style={{padding: 5}} to={`${RouterPage.locations.edit}${record._id}`}><Icon type='edit' />Editar</Link>
+                            <Tooltip title="Editar">
+                                <Link style={{padding: 10}} to={`${RouterPage.locations.edit}${record._id}`}>
+                                    <EditOutlined />
+                                </Link>
+                            </Tooltip>
+                            
                             <Popconfirm
                                 title="¿Seguro que desea eliminar la bodega?"
                                 onConfirm={() => this.removeLocation(record._id)}
@@ -50,9 +56,11 @@ class Location extends Component {
                                 cancelText="No"
                                 key={record._id}
                             >      
-                                <Link to="">
-                                    <Icon type='delete' /> Eliminar
-                                </Link>                                
+                                <Tooltip>
+                                    <Link to="" style={{padding: 10}}>
+                                        <DeleteOutlined />
+                                    </Link>
+                                </Tooltip>                                
                             </Popconfirm>
                         </div>
                     );
@@ -84,9 +92,11 @@ class Location extends Component {
                     <Row>
                         <Col>                                                
                             <Link to={RouterPage.locations.new}>
-                                <Button type="primary" style={{ marginBottom: 16 }}>
-                                    Nueva Bodega                            
-                                </Button>
+                                <Tooltip title="Nueva Bodega">
+                                    <Button type="primary" style={{ marginBottom: 16 }}>
+                                        <PlusOutlined />
+                                    </Button>
+                                </Tooltip>
                             </Link>
                         </Col>
                     </Row>

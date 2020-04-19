@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Col, Button, Icon, Popconfirm, Spin } from 'antd';
+import { Row, Col, Button, Popconfirm, Spin, Tooltip } from 'antd';
+import { PlusOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Api, RouterPage  } from '../../Config';
 import PageLayout from '../../layout/PageLayout';
 import { Notification, NotificationType } from '../../component/Notification';
@@ -60,7 +61,11 @@ class Product extends Component {
                 render: (value, record) => {
                     return( 
                         <div>
-                            <Link style={{padding: 5}} to={`${RouterPage.products.edit}${record._id}`}><Icon type='edit' />Editar</Link>
+                            <Tooltip title="Editar">
+                                <Link style={{padding: 10}} to={`${RouterPage.products.edit}${record._id}`}>
+                                    <EditOutlined />
+                                </Link>
+                            </Tooltip>
                             <Popconfirm
                                 title="¿Seguro que desea eliminar el producto?"
                                 onConfirm={() => this.remove(record._id)}
@@ -68,9 +73,11 @@ class Product extends Component {
                                 cancelText="No"
                                 key={record._id}
                             >      
-                                <Link to="">
-                                    <Icon type='delete' /> Eliminar
-                                </Link>                                
+                                <Tooltip title="Eliminar">
+                                    <Link to="" style={{padding: 10}}>
+                                        <DeleteOutlined />
+                                    </Link>
+                                </Tooltip>                              
                             </Popconfirm>
                         </div>
                     );
@@ -102,9 +109,11 @@ class Product extends Component {
                 <Row>
                     <Col>                                                
                         <Link to={RouterPage.products.new}>
-                            <Button type="primary" style={{ marginBottom: 16 }}>
-                                Nuevo Producto                            
-                            </Button>
+                            <Tooltip title="Nuevo Producto">
+                                <Button type="primary" style={{ marginBottom: 16 }}>
+                                    <PlusOutlined />
+                                </Button>
+                            </Tooltip>
                         </Link>
                     </Col>
                 </Row>

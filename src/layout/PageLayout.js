@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Layout, Menu, Icon, Typography, Tooltip, Button, Row, Col, Breadcrumb, Drawer } from 'antd';
-import { RouterPage, Api } from '../Config';
-import { SettingOutlined } from '@ant-design/icons';
+import { Layout, Menu, Typography, Tooltip, Button, Row, Col, Drawer } from 'antd';
+import { RouterPage } from '../Config';
+import { SettingOutlined, AppstoreOutlined, DashboardOutlined } from '@ant-design/icons';
 import Authenticate from '../services/Authenticate';
 const { Header, Sider, Content } = Layout;
 const { Title } = Typography;
@@ -60,27 +60,32 @@ class PageLayout extends Component{
 						style={{ height: '100%' }}						
 					>
 						<Menu.Item key={RouterPage.home}>
-							<Icon type='dashboard' />
+							<DashboardOutlined />
 							<span>Dashboard</span>
 							<Link to={RouterPage.home} />
 						</Menu.Item>
 						<SubMenu key="catalogo"
-							title={
-								<span>Catalogo</span>
+							title={					
+								<span>
+									<AppstoreOutlined />
+									<span>
+										Catalogo
+									</span>
+								</span>
 							}
 						>
 							<Menu.Item key={RouterPage.products.index}>								
-								<Icon type="appstore" />
+								<AppstoreOutlined />
 								<span>Productos</span>
 								<Link to={RouterPage.products.index} />
 							</Menu.Item>
 							<Menu.Item key={RouterPage.category.index}>
-								<Icon type="appstore" />
+								<AppstoreOutlined />
 								<span>Categoria</span>
 								<Link to={RouterPage.category.index} />
 							</Menu.Item>
 							<Menu.Item key={RouterPage.locations.index}>
-								<Icon type="appstore" />
+								<AppstoreOutlined />
 								<span>Bodegas</span>
 								<Link to={RouterPage.locations.index} />
 							</Menu.Item>

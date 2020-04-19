@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Col, Button, Icon, Popconfirm, Spin } from 'antd';
+import { Row, Col, Button, Popconfirm, Spin, Tooltip } from 'antd';
+import { PlusOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Api, RouterPage  } from '../../Config';
 import PageLayout from '../../layout/PageLayout';
 import { Notification, NotificationType } from '../../component/Notification';
@@ -42,7 +43,11 @@ class Category extends Component {
                 render: (value, record) => {
                     return( 
                         <div>
-                            <Link style={{padding: 5}} to={`${RouterPage.category.edit}${record._id}`}><Icon type='edit' />Editar</Link>
+                            <Tooltip title="Editar">
+                                <Link style={{padding: 10}} to={`${RouterPage.category.edit}${record._id}`}>
+                                    <EditOutlined />
+                                </Link>
+                            </Tooltip>                            
                             <Popconfirm
                                 title="¿Seguro que desea eliminar la categoria?"
                                 onConfirm={() => this.remove(record._id)}
@@ -50,9 +55,11 @@ class Category extends Component {
                                 cancelText="No"
                                 key={record._id}
                             >      
-                                <Link to="">
-                                    <Icon type='delete' /> Eliminar
-                                </Link>                                
+                                <Tooltip title="Eliminar">
+                                    <Link to="" style={{padding: 10}}>
+                                        <DeleteOutlined />
+                                    </Link> 
+                                </Tooltip>                                                               
                             </Popconfirm>
                         </div>
                     );
@@ -84,9 +91,11 @@ class Category extends Component {
                     <Row>
                         <Col>                                                
                             <Link to={RouterPage.category.new}>
-                                <Button type="primary" style={{ marginBottom: 16 }}>
-                                    Nueva Categoria      
-                                </Button>
+                                <Tooltip title="Nueva Categoria">
+                                    <Button type="primary" style={{ marginBottom: 16 }}>
+                                        <PlusOutlined />
+                                    </Button>
+                                </Tooltip>
                             </Link>
                         </Col>
                     </Row>
