@@ -19,6 +19,7 @@ class LocationNew extends Component {
         };
         this.onClickGuardar = this.onClickGuardar.bind(this);
     }
+    
     onClickGuardar(e){
         e.preventDefault();
         this.props.form.validateFields((err, data) => {
@@ -28,6 +29,7 @@ class LocationNew extends Component {
             }
         });
     }
+
     async save(data){
         const location = {
             name: data.name,
@@ -43,8 +45,9 @@ class LocationNew extends Component {
         if(postHttpClient.error){
             Notification('Error', postHttpClient.error, NotificationType.Error);
             this.setState({ loading: false });
-        }        
+        }
     }
+
     render(){
         const { getFieldDecorator } = this.props.form;
         return this.state.redirectIndex ? <Redirect to={RouterPage.locations.index}/> :

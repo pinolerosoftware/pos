@@ -66,8 +66,7 @@ class Register extends Component {
             active: true
         };        
         axios.post(Api.register, newUser)
-        .then(res => {            
-            console.log(res);
+        .then(res => {
             this.setState({ redirectLogin: true, loading: false });
         })
         .catch(error => {            

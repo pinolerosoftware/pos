@@ -17,10 +17,7 @@ class Location extends Component {
             userId: Authenticate.getUserId(),
             columns: this.getColumns(),
             data: [],
-            loading: false,
-            navBack:[
-                { name: 'Bodega' }                
-            ]
+            loading: false            
         };        
     }
     
