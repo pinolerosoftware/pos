@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Layout, Menu, Typography, Tooltip, Button, Row, Col, Drawer } from 'antd';
 import { RouterPage } from '../Config';
-import { SettingOutlined, AppstoreOutlined, DashboardOutlined } from '@ant-design/icons';
+import { SettingOutlined, AppstoreOutlined, DashboardOutlined, FileAddOutlined, UserOutlined } from '@ant-design/icons';
 import Authenticate from '../services/Authenticate';
 const { Header, Sider, Content } = Layout;
 const { Title } = Typography;
@@ -89,7 +89,17 @@ class PageLayout extends Component{
 								<span>Bodegas</span>
 								<Link to={RouterPage.locations.index} />
 							</Menu.Item>
-						</SubMenu>							
+						</SubMenu>
+						<Menu.Item key={RouterPage.sales.new}>
+							<FileAddOutlined />
+							<span>Nueva Venta</span>
+							<Link to={RouterPage.sales.new} />
+						</Menu.Item>
+						<Menu.Item key={RouterPage.company.setting}>
+							<SettingOutlined />
+							<span>Configuración</span>
+							<Link to={RouterPage.company.setting} />
+						</Menu.Item>
 					</Menu>
 				</Sider>
 				<Drawer
@@ -111,7 +121,7 @@ class PageLayout extends Component{
 							<Col span={12} push={10}>
 								<Tooltip title="Perfil">
 									<Button type="primary" shape="circle" onClick={this.onOpenSetting}>
-										<SettingOutlined />
+										<UserOutlined />										
 									</Button>
 								</Tooltip>
 							</Col>

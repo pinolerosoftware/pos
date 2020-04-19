@@ -14,6 +14,8 @@ import LocationEdit from '../modules/locations/Edit';
 import Category from '../modules/categories/Category';
 import CategoryNew from '../modules/categories/New';
 import CategoryEdit from '../modules/categories/Edit';
+import Setting from '../modules/company/Setting';
+import Sales from '../modules/sales/New';
 
 export const Routes = (
     <Switch>
@@ -29,5 +31,7 @@ export const Routes = (
         <AuthRouter exact path={RouterPage.category.index} component={Category}/>
         <AuthRouter exact path={RouterPage.category.new} component={CategoryNew}/>
         <AuthRouter exact path={`${RouterPage.category.edit}:id`} component={CategoryEdit}/>
+        <AuthRouter exact path={RouterPage.company.setting} component={Setting}/>
+        <AuthRouter exact path={RouterPage.sales.new} component={Sales}/>
     </Switch>
 );

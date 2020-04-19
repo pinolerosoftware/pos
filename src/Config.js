@@ -7,7 +7,9 @@ export const Api = {
     company: `${baseUrl}companies/`,
     location: `${baseUrl}locations/`,
     category: `${baseUrl}categories/`,
-    product: `${baseUrl}products/`
+    product: `${baseUrl}products/`,
+    sales: `${baseUrl}sales/`,
+    setting: `${baseUrl}settings/`
 };
 
 export const RouterPage = {
@@ -32,5 +34,11 @@ export const RouterPage = {
         index: '/category/',
         new: '/category/new/',
         edit: '/category/edit/'        
-    }    
+    },
+    sales: {
+        new: '/sales/new/'
+    },
+    company: {
+        setting: '/company/setting/'
+    }
 }

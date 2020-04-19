@@ -89,7 +89,7 @@ class Category extends Component {
             <PageLayout menuKey={RouterPage.category.index} menuOpenKey="catalogo">
                 <Spin spinning={this.state.loading}>
                     <Row>
-                        <Col>                                                
+                        <Col>
                             <Link to={RouterPage.category.new}>
                                 <Tooltip title="Nueva Categoria">
                                     <Button type="primary" style={{ marginBottom: 16 }}>
