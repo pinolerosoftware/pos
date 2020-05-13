@@ -11,8 +11,8 @@ import Sales from './modules/sales/Sales';
 
 const { Header, Content, Sider } = Layout;
 const icoStyle = {
-	float: "right", 
-	marginTop: "10px", 
+	float: "right",
+	marginTop: "10px",
 	marginRight: "20px",
 	borderRadius: "50%",
 	cursor: "pointer"
@@ -37,7 +37,7 @@ const ListMenu = [
 class App extends Component {
 	constructor(props){
 		super(props);
-		
+
 		this.state = {
 		  collapsed: false,
 		};

@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "antd": "^3.26.9",
+    "@ant-design/icons": "^4.1.0",
+    "antd": "^3.26.16",
     "chart.js": "^2.9.3",
     "node-sass": "^4.13.1",
     "react": "^16.12.0",
