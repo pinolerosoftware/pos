@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
-import { Layout, Menu, Icon, Avatar } from 'antd';
+import { Layout, Menu, Avatar } from 'antd';
+import {AppstoreOutlined} from '@ant-design/icons';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import PrincipalProducts from './modules/PrincipalProducts';
 import Dashboard from './modules/dashboard/Dashboard';
@@ -58,7 +59,7 @@ class App extends Component {
 							{ListMenu.map(item => {
 								return <Menu.Item key={item.to}>
 											<Link to={item.to}>
-												<Icon type={item.icon} />
+                                                <AppstoreOutlined />
 												<span>{item.text}</span>
 											</Link>
 										</Menu.Item>

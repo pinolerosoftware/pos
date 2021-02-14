@@ -84,19 +84,14 @@ class FormCategory extends Component {
         data[field] = value;
         this.setState(data);
     }
-    
+
     render(){
-        const { getFieldDecorator } = this.props.form;
         let {title, buttons} = this.props;
         return (
             <Form>
                 <h2>{title}</h2>
-                <Item {...formItemLayout} label="Nombre">
-                    {getFieldDecorator('name',{
-                        rules: [{ required: true, message: 'El campo nombre es requerido', whitespace: true }],
-                    })(
-                        <Input onChange={e => this.onChange('name', e.target.value)}/>
-                    )}
+                <Item {...formItemLayout} name='name' label="Nombre"  rules={[{ required: true, message: 'El campo nombre es requerido', whitespace: true }]}>
+                    <Input onChange={e => this.onChange('name', e.target.value)}/>
                 </Item>
                 <Item style={{textAlign: "right"}} labelCol={{span: 2}} wrapperCol={{span: 22}}>
                     {!buttons && <Link to="/products/categories">
@@ -109,4 +104,4 @@ class FormCategory extends Component {
     }
 }
 
-export default FormCategory = Form.create()(FormCategory);
+export default FormCategory

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Button, Table, Spin, Icon, Popconfirm, Modal } from 'antd';
+import { Button, Table, Spin, Popconfirm, Modal } from 'antd';
 import { Link } from "react-router-dom";
 
 
@@ -44,7 +44,7 @@ export default class Products extends Component {
             }
         });
     }
-    
+
     getColumns(){
         return [{
             title: 'Producto',
@@ -64,9 +64,8 @@ export default class Products extends Component {
             key: 'price',
         },{
             title: 'Eliminar',
-            render: (tag) => (   
+            render: (tag) => (
                 <Popconfirm title="Seguro que desea eliminar？" okText="Si" onConfirm={() => this.onDelete(tag._id)} cancelText="No">
-                    <Icon type="delete" style={{color: "#3179d2c4", fontSize: "1.4em", cursor: "pointer"}} />
                 </Popconfirm>
             )
         }]
@@ -88,8 +87,7 @@ export default class Products extends Component {
                             Agregar Producto
                         </Button>
                     </Link>
-                    <Spin spinning={loading} tip="Cargando" 
-                        indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />}>
+                    <Spin spinning={loading} tip="Cargando">
                         <Table rowKey="_id"
                             columns={this.getColumns()}
                             dataSource={this.getRecords()}

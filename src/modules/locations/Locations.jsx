@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Button, Table, Icon, Popconfirm, Modal, Spin } from 'antd';
+import { Button, Table, Popconfirm, Modal, Spin } from 'antd';
 import { Route, Link } from "react-router-dom";
 import FormLocations from './FormLocations';
 
@@ -19,7 +19,7 @@ class Locations extends Component {
     componentDidMount(){
         this.onGetData()
     }
-    
+
     onGetData(){
         fetch(`${process.env.REACT_APP_PROXY}/locations`)
         .then(res => res.json())
@@ -56,16 +56,16 @@ class Locations extends Component {
             width: 600
         },{
             title: 'Eliminar',
-            render: (tag) => (   
+            render: (tag) => (
                 <Popconfirm title="Seguro que desea eliminar？" okText="Si" onConfirm={() => this.onDelete(tag._id)} cancelText="No">
-                    <Icon type="delete" style={{color: "#3179d2c4", fontSize: "1.4em", cursor: "pointer"}} />
+                    Delete
                 </Popconfirm>
             )
         },{
             title: 'Editar',
-            render: (tag) => (   
+            render: (tag) => (
                 <Link to={`${this.props.match.url}/edit/${tag._id}`}>
-                    <Icon type="edit" style={{color: "#3179d2c4", fontSize: "1.4em", cursor: "pointer"}}/>
+                    Edit
                 </Link>
             )
         }]
@@ -88,8 +88,7 @@ class Locations extends Component {
                                 Agregar Ubicación
                             </Button>
                         </Link>
-                        <Spin spinning={loading} tip="Cargando" 
-                        indicator={<Icon type="loading" style={{ fontSize: 24 }} spin />}>
+                        <Spin spinning={loading} tip="Cargando">
                             <Table rowKey="_id"
                                 columns={this.getColumns()}
                                 dataSource={this.getRecords()}

@@ -47,7 +47,7 @@ class FormLocations extends Component {
             }
         });
     }
-    
+
     showModal(message) {
         let self = this;
         Modal.success({
@@ -92,4 +92,4 @@ class FormLocations extends Component {
     }
 }
 
-export default FormLocations = Form.create()(FormLocations);
+export default FormLocations

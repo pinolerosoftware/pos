@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import { Layout, Row, Col, Affix, Icon } from 'antd';
+import { Layout, Row, Col, Affix } from 'antd';
+import { HddOutlined } from '@ant-design/icons';
 import "../../styles/Home.css"
 
 const { Header, Content } = Layout;
@@ -19,7 +20,7 @@ class Home extends Component {
                             </Row>
                     </Header>
                 </Affix>
-                <Content> 
+                <Content>
                     <section  className="baner">
                         <div className="baner-flex">
                             <div className="baner-article">
@@ -27,7 +28,7 @@ class Home extends Component {
                                 <p >Registrate de forma gratuita y empeza a controlar tu negocio.</p>
                             </div>
                             <div className="baner-logo">
-                                <Icon type="hdd" className="icon"/>
+                                <HddOutlined className="icon" />
                             </div>
                         </div>
                     </section>

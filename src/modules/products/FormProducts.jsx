@@ -42,19 +42,19 @@ class FormProducts extends Component {
         this.onLoadLocations()
         this.onLoadCategories()
     }
-    
+
     onLoadCategories() {
         fetch(`${process.env.REACT_APP_PROXY}/categories`)
         .then(res => res.json())
         .then(data => this.setState({categories: data.categories}));
     }
-    
+
     onLoadLocations() {
         fetch(`${process.env.REACT_APP_PROXY}/locations`)
         .then(res => res.json())
         .then(data => this.setState({locations: data.locations}));
     }
-    
+
     onSave() {
         this.props.form.validateFields((err, data) => {
             if (!err) {
@@ -89,7 +89,7 @@ class FormProducts extends Component {
             this.setState({visibleFormLocation: true})
 
         this.setState({
-            cantidadCategories: this.state.categories.length, 
+            cantidadCategories: this.state.categories.length,
             cantidadLocations: this.state.locations.length
         })
     }
@@ -99,7 +99,7 @@ class FormProducts extends Component {
 
         if(cantidadCategories === categories.length)
             this.props.form.setFieldsValue({category: ''})
-        else 
+        else
             this.props.form.setFieldsValue({category: categories[categories.length - 1].name})
 
         this.setState({visibleFormCategory: false})
@@ -107,10 +107,10 @@ class FormProducts extends Component {
 
     onCloseLocation() {
         let {locations, cantidadLocations} = this.state
-        
+
         if(cantidadLocations === locations.length)
             this.props.form.setFieldsValue({location: ''})
-        else 
+        else
             this.props.form.setFieldsValue({location: locations[locations.length - 1].name})
 
         this.setState({visibleFormLocation: false})
@@ -183,4 +183,4 @@ class FormProducts extends Component {
 }
 
 
-export default FormProducts = Form.create()(FormProducts);
+export default FormProducts
